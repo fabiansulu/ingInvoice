@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Paramètres de l'Entreprise</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group me-2">
+        
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    
+    <div class="card">
+      <div class="card-body">
+        <div class="btn-group me-2">
+          <button href="#addClientModal" type="button" class="btn btn-secondary" data-bs-toggle="modal">Modifier</button>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <h5 class="card-title">Nom de l'Entreprise: {{company.clientName}}</h5>
+            <hr>
+            <p class="card-text"><strong>Adresse physique:</strong> {{company.addressLine1}}</p>
+            <p class="card-text"><strong>Province:</strong> {{company.province}}</p>
+            <p class="card-text"><strong>Code Postal:</strong> {{company.postalCode}}</p>
+            <br>
+            <p class="card-text"><strong>Téléphone:</strong> {{company.phoneNumber}}</p>
+            <p class="card-text"><strong>Email:</strong> {{company.emailAddress}}</p>
+            <br>
+            <p class="card-text"><strong>N°RCCM (Registre de Commerce):</strong> {{company.taxNumber}}</p>
+            <br>
+            <p class="card-text"><strong>Logo:</strong> {{company.clientLogo}}</p>
+          </div>
+
+
+          <div class="col-lg-5">
+            <div class="p-5">
+            <img class=img-fluid  src="{% static 'img/empty.svg' %}" alt="ingInvoice">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal modal-sheet py-5" tabindex="-1" id="addClientModal">
+    <div class="modal-dialog">
+      <div class="modal-content rounded-6 shadow">
+
+        <form class="" action="#" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+
+
+          <div class="modal-header border-bottom-0">
+            <h5 class="modal-title">Modifier les informations de l'Entreprise</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body py-0">
+
+
+            {{company.as_table}}
+
+
+          </div>
+          <div class="modal-footer flex-column border-top-0">
+            <button type="submit" class="btn btn-lg btn-secondary w-100 mx-0 mb-2">Enregistrer</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

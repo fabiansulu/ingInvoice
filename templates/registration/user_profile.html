@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% include 'invoice/header.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}Informations sur la société{% endblock %}
+
+
+{% block content %}
+<br>   
+    <div class="container">
+        <h3>Informations de l'utilisateur</h3>
+        <div class="card">
+            <div class="card-body">
+
+                <div class="btn me-2 mb-3">
+                    <button href="#addClientModal" type="button" class="btn btn-secondary" data-bs-toggle="modal">Modifier</button><br>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h5 class="card-title">Identifiant : {{user.username}}</h5>
+                                  
+                        <hr>
+                        <p class="card-text"><strong>Nom :</strong> {{user.first_name}}</p>
+                        <p class="card-text"><strong>Prénom :</strong> {{user.last_name}}</p>
+                        <p class="card-text"><strong>E-mail :</strong> {{user.email}}</p>
+                    
+                    </div>
+
+
+                    <div class="col-lg-5">
+                        <div class="p-5">
+                            <img class=img-fluid  src="{% static 'img/empty.svg' %}" alt="ingInvoice">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="modal modal-sheet py-10" tabindex="-1" id="addClientModal">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-6 shadow">
+            <div class="modal-header">
+                <h5 class="modal-title">Modifier les informations</h5>
+            </div>
+            
+            <div class="modal-body">
+                <form enctype="multipart/form-data"  method="post">
+                    {% csrf_token %}
+                    
+                    {{ form.as_p }}
+                    
+                    <button type="submit" class="btn btn-lg btn-primary w-100 mx-0 mt-4 mb-2">Enregistrer</button>
+                    
+                </form>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+   
+{% endblock %}
+{% include 'invoice/footer.html' %}
+
+
+

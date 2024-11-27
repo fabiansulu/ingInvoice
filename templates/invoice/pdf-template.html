@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Facture #{{invoice.number}}- {{invoice.client.clientName | title}} </title>
+
+    <style >
+
+      .container {
+        margin-left: 50px;
+        margin-right: 50px;
+      }
+
+      table {
+        caption-side: bottom;
+        border-collapse: collapse; }
+
+      th {
+        text-align: inherit;
+        text-align: -webkit-match-parent; }
+
+      thead,
+      tbody,
+      tfoot,
+      tr,
+      td,
+      th {
+        border-color: inherit;
+        border-style: solid;
+        border-width: 0; }
+
+      .table {
+        --bs-table-bg: transparent;
+        --bs-table-striped-color: #495057;
+        --bs-table-striped-bg: #f8f9fa;
+        --bs-table-active-color: #495057;
+        --bs-table-active-bg: #f8f9fa;
+        --bs-table-hover-color: #495057;
+        --bs-table-hover-bg: #f8f9fa;
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #495057;
+        vertical-align: top;
+        border-color: #eff2f7; }
+      .table > :not(caption) > * > * {
+        padding: 0.75rem 0.75rem;
+        background-color: var(--bs-table-bg);
+        background-image: -webkit-gradient(linear, right top, right bottom, from(var(--bs-table-accent-bg)), to(var(--bs-table-accent-bg)));
+        background-image: linear-gradient(var(--bs-table-accent-bg), var(--bs-table-accent-bg));
+        border-bottom-width: 0px; }
+      .table > tbody {
+        vertical-align: inherit; }
+      .table > thead {
+        vertical-align: bottom; }
+/* > :not(:last-child) > :last-child > * */
+      .table  {
+        border-bottom-color: #eff2f7; } 
+
+      .table-responsive {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; }
+
+      .d-table {
+      display: table !important; }
+
+      .table th {
+      font-weight: 600; }
+
+
+</style>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <h1>Facture: {{company.company_name}} </h1>
+      <br>
+      <hr>
+      <br>
+      <br>
+
+
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><img src="{{request.company.company_logo.url}}" style="width: 100%; max-width: 100px" alt="company logo"/></td>
+              <td></td>
+              <td>
+                Facture #: <strong>{{invoice.number}}</strong><br />
+                Créee: {{invoice.date_created|date}}<br />
+                Echéance: {{invoice.dueDate}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+      <br>
+
+
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <strong>{{company.company_name}}</strong><br />
+									{{company.company_email}}<br />
+									{{company.company_address}}, {{company.company_id}} <br/ >
+                  {{company.company_country}} <br/ >
+                  {{company.company_iban}}
+                <br>
+              </td>
+              <td></td>
+              <td>
+                <strong>{{invoice.client.clientName | title}}</strong> <br />
+                {{invoice.client.addressLine1}}<br />
+                {{invoice.client.province}}, {{invoice.client.postalCode}}<br />
+                {{invoice.client.emailAddress}} <br/ >
+                {{invoice.client.phoneNumber}}
+                <br>
+                <br>
+                Numéro RCCM: {{invoice.client.taxNumber}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <br>
+      <br>
+      <h1>Articles</h1>
+      <br>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Article</th>
+              <th>Quantité</th>
+              <th>Montant</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for product in products %}
+            <tr>
+              <td>{{product.title}}</td>
+              <td>{{product.quantity}}</td>
+    					<td>{{product.currency}} {{product.price}}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td></td>
+              <td></td>
+              <td> <strong> Total: {{invoiceTotal}} </strong> </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+      <br>
+      <br>
+      <p>
+        {{invoice.notes}}
+      </p>
+
+
+
+
+
+    </div>
+
+  </body>
+</html>

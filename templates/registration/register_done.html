@@ -1,0 +1,15 @@
+{% load static %}
+{% include 'invoice/header.html' %}
+
+{% block title %}Bienvenue{% endblock %}
+
+
+{% block content %}
+    <h1>Bienvenue {{new_user.first_name}}</h1>
+    <p>Vous compte a bien été crée. 
+        Vous pouvez maintenant vous <a href="{% url 'login' %}">connecter
+    </a></p>
+
+
+{% endblock %}
+{% include 'invoice/footer.html' %}

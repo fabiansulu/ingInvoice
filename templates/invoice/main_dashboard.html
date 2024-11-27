@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Tableau de bord</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group me-2">
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="card mb-5">
+              <h5 class="card-header">Factures</h5>
+              <div class="card-body">
+                <h5 class="card-title text-dark">Nombre total des Factures: {{invoices}}</h5>
+                <h5 class="card-title text-dark">Factures payées: {{paidInvoices}}</h5>
+                <a href="{% url 'invoices' %}" class="btn btn-secondary btn-md">Afficher Factures</a>
+              </div>
+            </div>
+
+            <div class="card mb-5">
+                <h5 class="card-header">Clients</h5>
+                <div class="card-body">
+                  <h5 class="card-title text-dark">Nombre total des Clients: {{clients}}</h5>
+                  <a href="{% url 'clients' %}" class="btn btn-secondary btn-md">Afficher Clients</a>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-6">
+        <div class="p-5">
+          <img class=img-fluid  src="{% static 'img/empty.svg' %}" alt="ingInvoice">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% endblock %}
