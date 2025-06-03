@@ -206,7 +206,7 @@ class Company(models.Model):
     c_name = models.TextField( max_length=200, blank=False, null= False, default= 'My company')
     c_email = models.EmailField()
     c_address = models.TextField( max_length=200, blank=True)
-    c_country = models.CharField(max_length=200, null=True, choices=CountryField().choices + [('', 'Selectionner un pays')])
+    c_country = models.CharField(max_length=200, null=True) #, choices=CountryField().choices + [('', 'Selectionner un pays')]
     c_iban = models.TextField( max_length=50, blank=True)
     c_id = models.TextField( max_length=50, blank=True)
 

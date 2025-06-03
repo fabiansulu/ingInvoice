@@ -11,7 +11,7 @@ class Company_Profile(models.Model):
     company_name = models.TextField( max_length=200, blank=False, null= False, default= 'My company')
     company_email = models.EmailField()
     company_address = models.TextField( max_length=200, blank=True)
-    company_country = models.CharField(max_length=200, null=True, choices=CountryField().choices + [('', 'Selectionner un pays')])
+    company_country = models.CharField(max_length=200, null=True) #choices= list(CountryField().choices) + [('', 'Selectionner un pays')]
     company_iban = models.TextField( max_length=50, blank=True)
     company_id = models.TextField( max_length=50, blank=True )
     company_logo = models.ImageField(default='default.svg', upload_to='company_logo/')

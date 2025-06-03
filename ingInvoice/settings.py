@@ -149,8 +149,8 @@ MEDIA_URL = '/uploads/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CRISPY_TEMPLATE_PACK = 'Bootstrap5'
-CRISPY_ALLOWED_TEMPLATE_PACKS = ('Bootstrap5',)
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap5',)
 
 LOGIN_REDIRECT_URL = 'main_dashboard'
 LOGIN_URL = 'login'
